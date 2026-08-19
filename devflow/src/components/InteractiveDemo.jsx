@@ -14,6 +14,7 @@ import {
   Filter,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../context/ThemeContext";
 
 const defaultTasks = [
   {
@@ -47,6 +48,7 @@ const defaultTasks = [
 ];
 
 export default function InteractiveDemo() {
+  const { isDark } = useTheme();
   const [tasks, setTasks] = useState(() => {
     const saved = localStorage.getItem("devflow_demo_tasks");
     if (saved) {
@@ -154,25 +156,37 @@ export default function InteractiveDemo() {
   return (
     <section
       id="product"
-      className="relative border-t border-white/10 px-6 py-28 lg:px-8 lg:py-36"
+      className={`relative overflow-hidden border-t px-6 py-28 lg:px-8 lg:py-36 transition-colors duration-300 ${
+        isDark ? "border-white/10" : "border-slate-200"
+      }`}
     >
       <div className="mx-auto max-w-7xl">
         {/* Heading */}
         <div className="grid items-end gap-8 lg:grid-cols-2">
           <div>
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-lime-300">
+            <p
+              className={`text-sm font-medium uppercase tracking-[0.2em] ${
+                isDark ? "text-lime-300" : "text-lime-700 font-bold"
+              }`}
+            >
               Interactive Focus Workbench
             </p>
 
-            <h2 className="mt-5 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+            <h2
+              className={`mt-5 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl lg:text-6xl ${
+                isDark ? "text-white" : "text-slate-900"
+              }`}
+            >
               Your day,
               <br />
-              <span className="text-white/40">completely in control.</span>
+              <span className={isDark ? "text-white/40" : "text-slate-400"}>
+                completely in control.
+              </span>
             </h2>
           </div>
 
           <div className="lg:ml-auto max-w-xl">
-            <p className="text-base leading-7 text-white/50 lg:text-lg">
+            <p className={`text-base leading-7 lg:text-lg ${isDark ? "text-white/50" : "text-slate-600"}`}>
               Experience the actual developer flow. Add real tasks, toggle completion states,
               run deep work sprints, and feel the friction-free responsiveness.
             </p>
@@ -185,18 +199,46 @@ export default function InteractiveDemo() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="mt-16 overflow-hidden rounded-3xl border border-white/10 bg-[#0a0c10] shadow-2xl"
+          className={`relative mt-16 overflow-hidden rounded-3xl border shadow-2xl transition-colors duration-300 ${
+            isDark
+              ? "border-white/10 bg-[#0a0c10] text-white shadow-black/80"
+              : "border-slate-200 bg-white text-slate-900 shadow-slate-200"
+          }`}
         >
+          {/* Card Ambient Glow Texture */}
+          <div className="pointer-events-none absolute inset-0 -z-10 opacity-10">
+            <img
+              src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80"
+              alt="Cyber Grid"
+              className="h-full w-full object-cover mix-blend-luminosity"
+            />
+            <div
+              className={`absolute inset-0 ${
+                isDark
+                  ? "bg-gradient-to-r from-[#0a0c10] via-transparent to-[#0a0c10]"
+                  : "bg-gradient-to-r from-white via-transparent to-white"
+              }`}
+            />
+          </div>
+
           <div className="grid lg:grid-cols-[1fr_360px]">
             {/* Task list container */}
             <div className="p-6 sm:p-8 lg:p-10">
               {/* Header with Actions */}
-              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
+              <div
+                className={`flex flex-wrap items-center justify-between gap-4 border-b pb-6 ${
+                  isDark ? "border-white/10" : "border-slate-200"
+                }`}
+              >
                 <div>
-                  <span className="text-xs font-mono text-white/40">
+                  <span
+                    className={`text-xs font-mono ${
+                      isDark ? "text-white/40" : "text-slate-400 font-semibold"
+                    }`}
+                  >
                     FOCUS SPRINT QUEUE
                   </span>
-                  <h3 className="mt-0.5 text-xl font-bold text-white">
+                  <h3 className="mt-0.5 text-xl font-bold">
                     Today's Priority Stack
                   </h3>
                 </div>
@@ -204,7 +246,7 @@ export default function InteractiveDemo() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setShowAddForm((prev) => !prev)}
-                    className="flex items-center gap-1.5 rounded-xl bg-lime-300 px-3.5 py-2 text-xs font-bold text-black transition hover:bg-lime-200"
+                    className="flex items-center gap-1.5 rounded-xl bg-lime-300 px-3.5 py-2 text-xs font-bold text-black transition hover:bg-lime-200 shadow-md shadow-lime-300/20"
                   >
                     <Plus size={15} />
                     <span>Add Task</span>
@@ -212,7 +254,11 @@ export default function InteractiveDemo() {
 
                   <button
                     onClick={resetDefaultTasks}
-                    className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-mono text-white/50 transition hover:text-white"
+                    className={`rounded-xl border px-3 py-2 text-xs font-mono transition ${
+                      isDark
+                        ? "border-white/10 bg-white/[0.04] text-white/50 hover:text-white"
+                        : "border-slate-200 bg-slate-100 text-slate-600 hover:text-slate-900"
+                    }`}
                     title="Reset to default tasks"
                   >
                     Reset
@@ -228,7 +274,11 @@ export default function InteractiveDemo() {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     onSubmit={handleAddTask}
-                    className="mt-6 rounded-2xl border border-lime-300/30 bg-lime-300/[0.04] p-4"
+                    className={`mt-6 rounded-2xl border p-4 backdrop-blur-md ${
+                      isDark
+                        ? "border-lime-300/30 bg-lime-300/[0.04]"
+                        : "border-lime-300 bg-lime-50/70"
+                    }`}
                   >
                     <div className="flex flex-col sm:flex-row gap-3">
                       <input
@@ -237,12 +287,20 @@ export default function InteractiveDemo() {
                         value={newTaskTitle}
                         onChange={(e) => setNewTaskTitle(e.target.value)}
                         autoFocus
-                        className="flex-1 rounded-xl border border-white/10 bg-black/40 px-3.5 py-2 text-sm text-white placeholder-white/40 focus:border-lime-300 focus:outline-none"
+                        className={`flex-1 rounded-xl border px-3.5 py-2 text-sm focus:border-lime-500 focus:outline-none ${
+                          isDark
+                            ? "border-white/10 bg-black/50 text-white placeholder-white/40"
+                            : "border-slate-300 bg-white text-slate-900 placeholder-slate-400"
+                        }`}
                       />
                       <select
                         value={newTaskCategory}
                         onChange={(e) => setNewTaskCategory(e.target.value)}
-                        className="rounded-xl border border-white/10 bg-[#12151c] px-3 py-2 text-xs text-white focus:outline-none"
+                        className={`rounded-xl border px-3 py-2 text-xs focus:outline-none ${
+                          isDark
+                            ? "border-white/10 bg-[#12151c] text-white"
+                            : "border-slate-300 bg-white text-slate-800"
+                        }`}
                       >
                         <option value="Project">Project</option>
                         <option value="Learning">Learning</option>
@@ -250,7 +308,7 @@ export default function InteractiveDemo() {
                       </select>
                       <button
                         type="submit"
-                        className="rounded-xl bg-lime-300 px-4 py-2 text-xs font-bold text-black hover:bg-lime-200"
+                        className="rounded-xl bg-lime-300 px-4 py-2 text-xs font-bold text-black hover:bg-lime-200 shadow-md"
                       >
                         Save
                       </button>
@@ -265,10 +323,15 @@ export default function InteractiveDemo() {
                   <button
                     key={cat}
                     onClick={() => setActiveFilter(cat)}
-                    className={`rounded-xl px-3 py-1.5 text-xs font-medium transition ${activeFilter === cat
-                        ? "bg-white/15 text-white font-semibold"
-                        : "text-white/40 hover:text-white"
-                      }`}
+                    className={`rounded-xl px-3 py-1.5 text-xs font-medium transition ${
+                      activeFilter === cat
+                        ? isDark
+                          ? "bg-white/15 text-white font-semibold shadow-sm"
+                          : "bg-slate-900 text-white font-bold shadow-sm"
+                        : isDark
+                        ? "text-white/40 hover:text-white"
+                        : "text-slate-500 hover:text-slate-800"
+                    }`}
                   >
                     {cat}
                   </button>
@@ -279,7 +342,11 @@ export default function InteractiveDemo() {
               <div className="mt-6 space-y-3">
                 <AnimatePresence>
                   {filteredTasks.length === 0 ? (
-                    <div className="py-10 text-center text-sm text-white/40 font-mono">
+                    <div
+                      className={`py-10 text-center text-sm font-mono ${
+                        isDark ? "text-white/40" : "text-slate-400"
+                      }`}
+                    >
                       No tasks in this category. Click "Add Task" above!
                     </div>
                   ) : (
@@ -292,33 +359,54 @@ export default function InteractiveDemo() {
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.2 }}
                         onClick={() => toggleTask(task.id)}
-                        className={`group flex cursor-pointer items-center justify-between gap-4 rounded-2xl border p-4 transition-all duration-200 ${task.completed
-                            ? "border-white/5 bg-white/[0.01] opacity-60"
-                            : "border-white/10 bg-white/[0.025] hover:border-lime-300/30 hover:bg-white/[0.05]"
-                          }`}
+                        className={`group flex cursor-pointer items-center justify-between gap-4 rounded-2xl border p-4 transition-all duration-200 ${
+                          task.completed
+                            ? isDark
+                              ? "border-white/5 bg-white/[0.01] opacity-60"
+                              : "border-slate-100 bg-slate-50/50 opacity-60"
+                            : isDark
+                            ? "border-white/10 bg-white/[0.025] hover:border-lime-300/30 hover:bg-white/[0.05]"
+                            : "border-slate-200 bg-slate-50 hover:border-lime-400 hover:bg-white"
+                        }`}
                       >
                         <div className="flex items-center gap-3.5 min-w-0">
                           <button
                             type="button"
-                            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition ${task.completed
+                            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition ${
+                              task.completed
                                 ? "border-lime-300 bg-lime-300 text-black font-bold"
-                                : "border-white/20 text-transparent group-hover:border-lime-300/50"
-                              }`}
+                                : isDark
+                                ? "border-white/20 text-transparent group-hover:border-lime-300/50"
+                                : "border-slate-300 text-transparent group-hover:border-lime-500"
+                            }`}
                           >
                             <Check size={13} strokeWidth={3} />
                           </button>
 
                           <div className="min-w-0">
                             <p
-                              className={`truncate text-sm font-medium transition ${task.completed
-                                  ? "text-white/35 line-through"
-                                  : "text-white/90"
-                                }`}
+                              className={`truncate text-sm font-medium transition ${
+                                task.completed
+                                  ? isDark
+                                    ? "text-white/35 line-through"
+                                    : "text-slate-400 line-through"
+                                  : isDark
+                                  ? "text-white/90"
+                                  : "text-slate-800"
+                              }`}
                             >
                               {task.title}
                             </p>
-                            <div className="mt-1 flex items-center gap-2 font-mono text-[11px] text-white/35">
-                              <span className="rounded bg-white/[0.04] px-1.5 py-0.5">
+                            <div
+                              className={`mt-1 flex items-center gap-2 font-mono text-[11px] ${
+                                isDark ? "text-white/35" : "text-slate-500"
+                              }`}
+                            >
+                              <span
+                                className={`rounded px-1.5 py-0.5 ${
+                                  isDark ? "bg-white/[0.04]" : "bg-slate-200"
+                                }`}
+                              >
                                 {task.category}
                               </span>
                               <span>•</span>
@@ -331,7 +419,7 @@ export default function InteractiveDemo() {
                           <button
                             type="button"
                             onClick={(e) => deleteTask(task.id, e)}
-                            className="p-1.5 text-white/20 opacity-0 group-hover:opacity-100 transition hover:text-rose-400"
+                            className="p-1.5 text-slate-400 opacity-0 group-hover:opacity-100 transition hover:text-rose-500"
                             title="Delete task"
                           >
                             <Trash2 size={15} />
@@ -345,25 +433,59 @@ export default function InteractiveDemo() {
             </div>
 
             {/* Right Side: Live Focus Engine & Pomodoro */}
-            <div className="border-t border-white/10 bg-[#0d1015] p-6 sm:p-8 lg:border-l lg:border-t-0 flex flex-col justify-between">
+            <div
+              className={`relative border-t p-6 sm:p-8 lg:border-l lg:border-t-0 flex flex-col justify-between overflow-hidden ${
+                isDark
+                  ? "border-white/10 bg-[#0d1015]"
+                  : "border-slate-200 bg-slate-50"
+              }`}
+            >
+              {/* Sidebar Background Image */}
+              <div className="pointer-events-none absolute inset-0 -z-10 opacity-10">
+                <img
+                  src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
+                  alt="Pomodoro Texture"
+                  className="h-full w-full object-cover mix-blend-luminosity"
+                />
+                <div
+                  className={`absolute inset-0 ${
+                    isDark
+                      ? "bg-gradient-to-t from-[#0d1015] via-[#0d1015]/90 to-transparent"
+                      : "bg-gradient-to-t from-slate-50 via-slate-50/90 to-transparent"
+                  }`}
+                />
+              </div>
+
               <div>
                 {/* Sprint Progress Gauge */}
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase tracking-wider text-white/40">
+                  <span
+                    className={`text-xs font-mono uppercase tracking-wider ${
+                      isDark ? "text-white/40" : "text-slate-500 font-semibold"
+                    }`}
+                  >
                     Sprint Completion
                   </span>
-                  <span className="font-mono text-xs font-bold text-lime-300">
+                  <span
+                    className={`font-mono text-xs font-bold ${
+                      isDark ? "text-lime-300" : "text-lime-700"
+                    }`}
+                  >
                     {completedCount} / {tasks.length} DONE
                   </span>
                 </div>
 
                 <div className="mt-4 flex items-baseline justify-between">
-                  <span className="text-5xl font-extrabold tracking-tight text-white font-mono">
+                  <span className="text-5xl font-extrabold tracking-tight font-mono">
                     {progressPercent}%
                   </span>
                 </div>
 
-                <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-white/10">
+                <div
+                  className={`mt-4 h-2.5 overflow-hidden rounded-full ${
+                    isDark ? "bg-white/10" : "bg-slate-200"
+                  }`}
+                >
                   <motion.div
                     animate={{ width: `${progressPercent}%` }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
@@ -372,23 +494,34 @@ export default function InteractiveDemo() {
                 </div>
 
                 {/* Pomodoro Timer Engine */}
-                <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-center">
-                  <div className="flex items-center justify-center gap-2 text-xs font-mono text-white/50">
+                <div
+                  className={`mt-10 rounded-2xl border p-5 text-center backdrop-blur-md ${
+                    isDark
+                      ? "border-white/10 bg-white/[0.03]"
+                      : "border-slate-200 bg-white shadow-sm"
+                  }`}
+                >
+                  <div
+                    className={`flex items-center justify-center gap-2 text-xs font-mono ${
+                      isDark ? "text-white/50" : "text-slate-500 font-medium"
+                    }`}
+                  >
                     <Flame size={14} className="text-amber-400" />
                     <span>DEEP FOCUS TIMER</span>
                   </div>
 
-                  <p className="mt-3 font-mono text-4xl font-extrabold tracking-tight text-white">
+                  <p className="mt-3 font-mono text-4xl font-extrabold tracking-tight">
                     {formatTimer(timerSeconds)}
                   </p>
 
                   <div className="mt-4 flex items-center justify-center gap-2">
                     <button
                       onClick={toggleTimer}
-                      className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition ${isTimerRunning
-                          ? "bg-amber-400/20 text-amber-300 border border-amber-400/30"
-                          : "bg-lime-300 text-black hover:bg-lime-200"
-                        }`}
+                      className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition ${
+                        isTimerRunning
+                          ? "bg-amber-400/20 text-amber-500 border border-amber-400/30"
+                          : "bg-lime-300 text-black hover:bg-lime-200 shadow-md shadow-lime-300/20"
+                      }`}
                     >
                       {isTimerRunning ? <Pause size={14} /> : <Play size={14} />}
                       <span>{isTimerRunning ? "Pause Sprint" : "Start Sprint"}</span>
@@ -396,7 +529,11 @@ export default function InteractiveDemo() {
 
                     <button
                       onClick={resetTimer}
-                      className="rounded-xl border border-white/10 bg-white/[0.04] p-2 text-white/60 hover:text-white"
+                      className={`rounded-xl border p-2 transition ${
+                        isDark
+                          ? "border-white/10 bg-white/[0.04] text-white/60 hover:text-white"
+                          : "border-slate-200 bg-slate-100 text-slate-600 hover:text-slate-900"
+                      }`}
                       title="Reset timer to 25m"
                     >
                       <RotateCcw size={14} />
@@ -405,19 +542,37 @@ export default function InteractiveDemo() {
                 </div>
 
                 {/* Dynamic Context Feedback */}
-                <div className="mt-6 rounded-2xl border border-lime-300/15 bg-lime-300/[0.03] p-4 text-center">
-                  <p className="text-xs leading-relaxed text-white/60">
+                <div
+                  className={`mt-6 rounded-2xl border p-4 text-center ${
+                    isDark
+                      ? "border-lime-300/15 bg-lime-300/[0.03]"
+                      : "border-lime-300 bg-lime-50"
+                  }`}
+                >
+                  <p
+                    className={`text-xs leading-relaxed ${
+                      isDark ? "text-white/60" : "text-slate-700 font-medium"
+                    }`}
+                  >
                     {progressPercent === 100
                       ? "🎉 All priority sprint tasks checked! High throughput achieved."
                       : progressPercent >= 50
-                        ? "⚡ Outstanding momentum. Over halfway through today's priorities."
-                        : "🎯 Start your deep focus sprint. One commit at a time."}
+                      ? "⚡ Outstanding momentum. Over halfway through today's priorities."
+                      : "🎯 Start your deep focus sprint. One commit at a time."}
                   </p>
                 </div>
               </div>
 
-              <div className="mt-8 border-t border-white/10 pt-4 text-center">
-                <span className="font-mono text-[11px] text-white/30">
+              <div
+                className={`mt-8 border-t pt-4 text-center ${
+                  isDark ? "border-white/10" : "border-slate-200"
+                }`}
+              >
+                <span
+                  className={`font-mono text-[11px] ${
+                    isDark ? "text-white/30" : "text-slate-400 font-medium"
+                  }`}
+                >
                   Local-first storage synced automatically
                 </span>
               </div>

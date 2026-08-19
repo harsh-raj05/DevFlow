@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Sparkles, Eye, EyeOff } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 export default function AmbientBackground() {
   const canvasRef = useRef(null);
-  const [interactive, setInteractive] = useState(true);
+  const { isDark } = useTheme();
 
   useEffect(() => {
-    if (!interactive) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -23,18 +21,24 @@ export default function AmbientBackground() {
     };
 
     // Particle nodes configuration
-    const particleCount = Math.min(Math.floor(width / 22), 55);
+    const particleCount = Math.min(Math.floor(width / 24), 48);
     const particles = [];
 
     class Particle {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.radius = Math.random() * 1.8 + 0.8;
-        this.baseAlpha = Math.random() * 0.4 + 0.15;
-        this.color = Math.random() > 0.65 ? "#a3e635" : "#38bdf8"; // lime or cyan
+        this.vx = (Math.random() - 0.5) * 0.35;
+        this.vy = (Math.random() - 0.5) * 0.35;
+        this.radius = Math.random() * 1.6 + 0.8;
+        this.baseAlpha = isDark ? Math.random() * 0.4 + 0.15 : Math.random() * 0.25 + 0.1;
+        this.color = isDark
+          ? Math.random() > 0.65
+            ? "#a3e635"
+            : "#38bdf8"
+          : Math.random() > 0.65
+          ? "#16a34a"
+          : "#0284c7";
       }
 
       update() {
@@ -100,10 +104,13 @@ export default function AmbientBackground() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle =
-              particles[i].color === "#a3e635"
+            ctx.strokeStyle = isDark
+              ? particles[i].color === "#a3e635"
                 ? "rgba(163, 230, 53, 0.12)"
-                : "rgba(56, 189, 248, 0.10)";
+                : "rgba(56, 189, 248, 0.10)"
+              : particles[i].color === "#16a34a"
+              ? "rgba(22, 163, 74, 0.12)"
+              : "rgba(2, 132, 199, 0.10)";
             ctx.lineWidth = 0.8 * (1 - dist / 130);
             ctx.globalAlpha = 1 - dist / 130;
             ctx.stroke();
@@ -121,28 +128,49 @@ export default function AmbientBackground() {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [interactive]);
+  }, [isDark]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden transition-colors duration-500">
       {/* Dynamic Animated Aurora Orbs */}
-      <div className="absolute -top-40 left-1/4 h-[550px] w-[550px] rounded-full bg-gradient-to-br from-lime-400/12 to-emerald-500/5 blur-[160px] animate-pulse-glow" />
-      <div className="absolute top-[35%] -right-40 h-[600px] w-[600px] rounded-full bg-gradient-to-bl from-cyan-500/10 to-indigo-600/5 blur-[180px] animate-pulse-glow" style={{ animationDelay: "3s" }} />
-      <div className="absolute bottom-10 left-10 h-[500px] w-[500px] rounded-full bg-lime-300/8 blur-[160px]" />
+      <div
+        className={`absolute -top-40 left-1/4 h-[550px] w-[550px] rounded-full blur-[160px] animate-pulse-glow transition-all duration-500 ${
+          isDark
+            ? "bg-gradient-to-br from-lime-400/12 to-emerald-500/5"
+            : "bg-gradient-to-br from-lime-500/10 to-emerald-400/10"
+        }`}
+      />
+      <div
+        className={`absolute top-[35%] -right-40 h-[600px] w-[600px] rounded-full blur-[180px] animate-pulse-glow transition-all duration-500 ${
+          isDark
+            ? "bg-gradient-to-bl from-cyan-500/10 to-indigo-600/5"
+            : "bg-gradient-to-bl from-sky-400/10 to-blue-400/10"
+        }`}
+        style={{ animationDelay: "3s" }}
+      />
+      <div
+        className={`absolute bottom-10 left-10 h-[500px] w-[500px] rounded-full blur-[160px] transition-all duration-500 ${
+          isDark ? "bg-lime-300/8" : "bg-lime-400/10"
+        }`}
+      />
 
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-grid-pattern opacity-40 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]" />
 
       {/* Interactive Particle Canvas */}
-      {interactive && (
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 h-full w-full opacity-60"
-        />
-      )}
+      <canvas
+        ref={canvasRef}
+        className={`absolute inset-0 h-full w-full ${isDark ? "opacity-60" : "opacity-45"}`}
+      />
 
       {/* Ambient Cyber Beam lines */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime-300/20 to-transparent" />
+      <div
+        className={`absolute inset-x-0 top-0 h-px transition-colors duration-500 ${
+          isDark
+            ? "bg-gradient-to-r from-transparent via-lime-300/25 to-transparent"
+            : "bg-gradient-to-r from-transparent via-lime-600/25 to-transparent"
+        }`}
+      />
     </div>
   );
 }

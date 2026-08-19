@@ -1,7 +1,10 @@
 import { ArrowRight, ArrowUpRight, Sparkles, Terminal, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTheme } from "../context/ThemeContext";
 
 export default function CTA({ onOpenTerminal }) {
+  const { isDark } = useTheme();
+
   return (
     <section id="cta" className="relative px-6 py-24 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-7xl">
@@ -10,7 +13,11 @@ export default function CTA({ onOpenTerminal }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-[2.5rem] border border-white/15 bg-gradient-to-b from-[#12151d] to-[#0a0c10] px-6 py-16 text-center shadow-2xl shadow-black/80 sm:px-10 lg:px-16 lg:py-24"
+          className={`relative overflow-hidden rounded-[2.5rem] border px-6 py-16 text-center shadow-2xl sm:px-10 lg:px-16 lg:py-24 ${
+            isDark
+              ? "border-white/15 bg-gradient-to-b from-[#12151d] to-[#0a0c10] text-white shadow-black/80"
+              : "border-slate-300 bg-gradient-to-b from-slate-900 to-slate-950 text-white shadow-slate-300"
+          }`}
         >
           {/* In-Card Media Backdrop */}
           <div className="pointer-events-none absolute inset-0 -z-10 opacity-20">
@@ -27,7 +34,7 @@ export default function CTA({ onOpenTerminal }) {
           <div className="pointer-events-none absolute right-10 top-10 h-64 w-64 rounded-full bg-cyan-400/5 blur-[100px]" />
 
           <div className="relative z-10 mx-auto max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-lime-300/20 bg-lime-300/[0.05] px-4 py-1.5 text-xs font-mono text-lime-300 mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-lime-300/30 bg-lime-300/10 px-4 py-1.5 text-xs font-mono text-lime-300 mb-6">
               <Sparkles size={13} />
               <span>SHIPPING AT SPEED</span>
             </div>
@@ -40,7 +47,7 @@ export default function CTA({ onOpenTerminal }) {
               </span>
             </h2>
 
-            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/55 sm:text-lg">
+            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/75 sm:text-lg">
               No bloated sprints. No sprint poker. Just your code, your goals,
               and uninterrupted momentum.
             </p>
@@ -60,7 +67,7 @@ export default function CTA({ onOpenTerminal }) {
 
               <button
                 onClick={onOpenTerminal}
-                className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] px-7 py-4 text-sm font-medium text-white backdrop-blur-md transition hover:border-lime-300/30 hover:bg-white/[0.08] sm:w-auto"
+                className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/[0.08] px-7 py-4 text-sm font-medium text-white backdrop-blur-md transition hover:border-lime-300/40 hover:bg-white/[0.15] sm:w-auto"
               >
                 <Terminal size={16} className="text-lime-300" />
                 <span>Launch CLI Mode</span>
@@ -68,7 +75,7 @@ export default function CTA({ onOpenTerminal }) {
             </div>
 
             {/* Trust Points */}
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-white/40">
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-white/60">
               <div className="flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-lime-300" />
                 <span>100% Free For Solo Engineers</span>

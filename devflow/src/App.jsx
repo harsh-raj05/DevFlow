@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import AmbientBackground from "./components/AmbientBackground";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -12,9 +13,10 @@ import Footer from "./components/Footer";
 import EasterEgg from "./components/EasterEgg";
 import CommandPalette from "./components/CommandPalette";
 
-function App() {
+function AppContent() {
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+  const { isDark } = useTheme();
 
   // Global keyboard shortcut for Command Palette (Cmd+K / Ctrl+K)
   useEffect(() => {
@@ -30,11 +32,17 @@ function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#07080a] text-white selection:bg-lime-400/30 selection:text-lime-200">
+    <div
+      className={`relative min-h-screen transition-colors duration-300 ${
+        isDark
+          ? "bg-[#07080a] text-white selection:bg-lime-400/30 selection:text-lime-200"
+          : "bg-[#f8fafc] text-slate-900 selection:bg-lime-500/30 selection:text-lime-900"
+      }`}
+    >
       {/* Dynamic Ambient Background Canvas & Glow */}
       <AmbientBackground />
 
-      {/* Global Navigation Bar */}
+      {/* Global Navigation Bar with Theme Toggle */}
       <Navbar
         onOpenPalette={() => setIsPaletteOpen(true)}
         onOpenTerminal={() => setIsTerminalOpen(true)}
@@ -73,4 +81,10 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
+}

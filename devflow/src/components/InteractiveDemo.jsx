@@ -205,23 +205,25 @@ export default function InteractiveDemo() {
               : "border-slate-200 bg-white text-slate-900 shadow-slate-200"
           }`}
         >
-          {/* Card Ambient Glow Texture */}
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-10">
+          {/* Card Ambient Glow Texture - Clearly Visible */}
+          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80"
               alt="Cyber Grid"
-              className="h-full w-full object-cover mix-blend-luminosity"
+              className={`h-full w-full object-cover transition duration-300 ${
+                isDark ? "opacity-30 brightness-115 contrast-125" : "opacity-15 brightness-125"
+              }`}
             />
             <div
-              className={`absolute inset-0 ${
+              className={`absolute inset-0 transition-colors duration-300 ${
                 isDark
-                  ? "bg-gradient-to-r from-[#0a0c10] via-transparent to-[#0a0c10]"
-                  : "bg-gradient-to-r from-white via-transparent to-white"
+                  ? "bg-gradient-to-r from-[#0a0c10]/90 via-[#0a0c10]/60 to-[#0a0c10]/90"
+                  : "bg-gradient-to-r from-white/95 via-white/70 to-white/95"
               }`}
             />
           </div>
 
-          <div className="grid lg:grid-cols-[1fr_360px]">
+          <div className="relative z-10 grid lg:grid-cols-[1fr_360px]">
             {/* Task list container */}
             <div className="p-6 sm:p-8 lg:p-10">
               {/* Header with Actions */}
@@ -440,23 +442,25 @@ export default function InteractiveDemo() {
                   : "border-slate-200 bg-slate-50"
               }`}
             >
-              {/* Sidebar Background Image */}
-              <div className="pointer-events-none absolute inset-0 -z-10 opacity-10">
+              {/* Sidebar Background Image - Clearly Visible */}
+              <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
                   alt="Pomodoro Texture"
-                  className="h-full w-full object-cover mix-blend-luminosity"
+                  className={`h-full w-full object-cover transition duration-300 ${
+                    isDark ? "opacity-25 brightness-110 contrast-125" : "opacity-15 brightness-125"
+                  }`}
                 />
                 <div
                   className={`absolute inset-0 ${
                     isDark
-                      ? "bg-gradient-to-t from-[#0d1015] via-[#0d1015]/90 to-transparent"
-                      : "bg-gradient-to-t from-slate-50 via-slate-50/90 to-transparent"
+                      ? "bg-gradient-to-t from-[#0d1015] via-[#0d1015]/75 to-transparent"
+                      : "bg-gradient-to-t from-slate-50 via-slate-50/75 to-transparent"
                   }`}
                 />
               </div>
 
-              <div>
+              <div className="relative z-10">
                 {/* Sprint Progress Gauge */}
                 <div className="flex items-center justify-between">
                   <span

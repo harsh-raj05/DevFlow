@@ -19,14 +19,14 @@ export default function CTA({ onOpenTerminal }) {
               : "border-slate-300 bg-gradient-to-b from-slate-900 to-slate-950 text-white shadow-slate-300"
           }`}
         >
-          {/* In-Card Media Backdrop */}
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-20">
+          {/* In-Card Media Backdrop - Clearly Visible */}
+          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1600&q=80"
               alt="Developer Launch Banner"
-              className="h-full w-full object-cover mix-blend-screen"
+              className="h-full w-full object-cover opacity-40 brightness-115 contrast-125"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c10] via-transparent to-[#0a0c10]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c10]/95 via-[#0a0c10]/60 to-[#0a0c10]/80" />
           </div>
 
           {/* Ambient Glows */}

@@ -68,23 +68,25 @@ export default function DevCalculator() {
               : "border-slate-200 bg-white text-slate-900 shadow-slate-200"
           }`}
         >
-          {/* Card Background Circuit Texture */}
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-15">
+          {/* Card Background Circuit Texture - Clearly Visible */}
+          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
               alt="Microprocessor Texture"
-              className="h-full w-full object-cover mix-blend-luminosity"
+              className={`h-full w-full object-cover transition duration-300 ${
+                isDark ? "opacity-35 brightness-110 contrast-125" : "opacity-15 brightness-125"
+              }`}
             />
             <div
-              className={`absolute inset-0 ${
+              className={`absolute inset-0 transition-colors duration-300 ${
                 isDark
-                  ? "bg-gradient-to-t from-[#0d0f14] via-[#0d0f14]/80 to-transparent"
-                  : "bg-gradient-to-t from-white via-white/80 to-transparent"
+                  ? "bg-gradient-to-t from-[#0d0f14] via-[#0d0f14]/65 to-[#0d0f14]/80"
+                  : "bg-gradient-to-t from-white via-white/70 to-white/80"
               }`}
             />
           </div>
 
-          <div className="grid lg:grid-cols-[1fr_380px]">
+          <div className="relative z-10 grid lg:grid-cols-[1fr_380px]">
             {/* Interactive Sliders Form */}
             <div className="p-6 sm:p-10">
               <div className="flex items-center gap-3">

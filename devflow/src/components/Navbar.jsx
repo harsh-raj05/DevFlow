@@ -30,19 +30,19 @@ export default function Navbar({ onOpenPalette, onOpenTerminal }) {
       }`}
     >
       {/* Navbar Background Image Texture */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80"
           alt="Developer Matrix Network"
           className={`h-full w-full object-cover object-center ${
-            isDark ? "opacity-35 brightness-110 contrast-125" : "opacity-10 brightness-150 contrast-100"
+            isDark ? "opacity-45 brightness-115 contrast-125" : "opacity-15 brightness-125"
           }`}
         />
         {/* Gradient Overlay for high legibility */}
         <div
           className={`absolute inset-0 transition-colors duration-300 ${
             isDark
-              ? "bg-gradient-to-r from-[#07080a]/90 via-[#07080a]/65 to-[#07080a]/90"
+              ? "bg-gradient-to-r from-[#07080a]/90 via-[#07080a]/60 to-[#07080a]/90"
               : "bg-gradient-to-r from-white/95 via-white/80 to-white/95"
           }`}
         />

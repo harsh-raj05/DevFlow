@@ -287,14 +287,14 @@ export default function Workflow() {
                 : "border-slate-200 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white"
             }`}
           >
-            {/* Banner Background Image */}
-            <div className="pointer-events-none absolute inset-0 -z-10 opacity-35">
+            {/* Banner Background Image - Clearly Visible */}
+            <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80"
                 alt="Cyber Matrix Banner"
-                className="h-full w-full object-cover mix-blend-screen brightness-110"
+                className="h-full w-full object-cover opacity-45 brightness-125"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#080a0e]/80 via-transparent to-[#080a0e]/80" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#080a0e]/85 via-[#080a0e]/40 to-[#080a0e]/85" />
             </div>
 
             <div className="relative z-10">

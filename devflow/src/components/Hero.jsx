@@ -471,174 +471,214 @@ export default function Hero({ onOpenTerminal }) {
                         </div>
                       </div>
 
-                      {/* Stat Metrics Cards with Rich Card Textures */}
-                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                      {/* Stat Metrics Cards with Clearly Visible Card Background Images */}
+                      <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-4">
+                        {/* Stat 1 */}
                         <div
-                          className={`group relative overflow-hidden rounded-2xl border p-4 transition ${
+                          className={`group relative overflow-hidden rounded-2xl border p-4 transition duration-300 hover:scale-[1.02] shadow-lg ${
                             isDark
-                              ? "border-white/10 bg-white/[0.02] hover:border-white/20"
-                              : "border-slate-200 bg-slate-50 hover:border-slate-300"
+                              ? "border-white/15 bg-[#0d0f13] hover:border-lime-300/40"
+                              : "border-slate-200 bg-white hover:border-lime-400"
                           }`}
                         >
-                          <div className="pointer-events-none absolute inset-0 -z-10 opacity-15">
+                          {/* Card Background Image */}
+                          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                             <img
-                              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80"
-                              alt="Builds"
-                              className="h-full w-full object-cover mix-blend-luminosity"
+                              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80"
+                              alt="Builds Background"
+                              className={`h-full w-full object-cover transition duration-300 group-hover:scale-105 ${
+                                isDark
+                                  ? "opacity-35 brightness-110 contrast-125"
+                                  : "opacity-20 brightness-125"
+                              }`}
                             />
                             <div
                               className={`absolute inset-0 ${
-                                isDark ? "bg-[#0d0f13]/85" : "bg-white/80"
+                                isDark
+                                  ? "bg-gradient-to-t from-[#0d0f13] via-[#0d0f13]/60 to-[#0d0f13]/30"
+                                  : "bg-gradient-to-t from-white via-white/70 to-white/40"
                               }`}
                             />
                           </div>
-                          <p
-                            className={`text-xs font-mono ${
-                              isDark ? "text-white/40" : "text-slate-500"
-                            }`}
-                          >
-                            ACTIVE BUILDS
-                          </p>
-                          <p
-                            className={`mt-2 text-2xl font-bold font-mono ${
-                              isDark ? "text-white" : "text-slate-900"
-                            }`}
-                          >
-                            08
-                          </p>
-                          <span
-                            className={`text-[11px] font-mono ${
-                              isDark ? "text-lime-300" : "text-lime-600 font-semibold"
-                            }`}
-                          >
-                            ● All Passing
-                          </span>
+                          <div className="relative z-10">
+                            <p
+                              className={`text-xs font-mono font-semibold ${
+                                isDark ? "text-white/60" : "text-slate-500"
+                              }`}
+                            >
+                              ACTIVE BUILDS
+                            </p>
+                            <p
+                              className={`mt-2 text-2xl font-bold font-mono ${
+                                isDark ? "text-white" : "text-slate-900"
+                              }`}
+                            >
+                              08
+                            </p>
+                            <span
+                              className={`text-[11px] font-mono ${
+                                isDark ? "text-lime-300" : "text-lime-600 font-bold"
+                              }`}
+                            >
+                              ● All Passing
+                            </span>
+                          </div>
                         </div>
 
+                        {/* Stat 2 */}
                         <div
-                          className={`group relative overflow-hidden rounded-2xl border p-4 transition ${
+                          className={`group relative overflow-hidden rounded-2xl border p-4 transition duration-300 hover:scale-[1.02] shadow-lg ${
                             isDark
-                              ? "border-white/10 bg-white/[0.02] hover:border-white/20"
-                              : "border-slate-200 bg-slate-50 hover:border-slate-300"
+                              ? "border-white/15 bg-[#0d0f13] hover:border-lime-300/40"
+                              : "border-slate-200 bg-white hover:border-lime-400"
                           }`}
                         >
-                          <div className="pointer-events-none absolute inset-0 -z-10 opacity-15">
+                          {/* Card Background Image */}
+                          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                             <img
-                              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80"
-                              alt="Velocity"
-                              className="h-full w-full object-cover mix-blend-luminosity"
+                              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+                              alt="Velocity Background"
+                              className={`h-full w-full object-cover transition duration-300 group-hover:scale-105 ${
+                                isDark
+                                  ? "opacity-35 brightness-110 contrast-125"
+                                  : "opacity-20 brightness-125"
+                              }`}
                             />
                             <div
                               className={`absolute inset-0 ${
-                                isDark ? "bg-[#0d0f13]/85" : "bg-white/80"
+                                isDark
+                                  ? "bg-gradient-to-t from-[#0d0f13] via-[#0d0f13]/60 to-[#0d0f13]/30"
+                                  : "bg-gradient-to-t from-white via-white/70 to-white/40"
                               }`}
                             />
                           </div>
-                          <p
-                            className={`text-xs font-mono ${
-                              isDark ? "text-white/40" : "text-slate-500"
-                            }`}
-                          >
-                            VELOCITY
-                          </p>
-                          <p
-                            className={`mt-2 text-2xl font-bold font-mono ${
-                              isDark ? "text-lime-300" : "text-lime-600"
-                            }`}
-                          >
-                            88%
-                          </p>
-                          <span
-                            className={`text-[11px] font-mono ${
-                              isDark ? "text-white/40" : "text-slate-500"
-                            }`}
-                          >
-                            +12% vs last wk
-                          </span>
+                          <div className="relative z-10">
+                            <p
+                              className={`text-xs font-mono font-semibold ${
+                                isDark ? "text-white/60" : "text-slate-500"
+                              }`}
+                            >
+                              VELOCITY
+                            </p>
+                            <p
+                              className={`mt-2 text-2xl font-bold font-mono ${
+                                isDark ? "text-lime-300" : "text-lime-600"
+                              }`}
+                            >
+                              88%
+                            </p>
+                            <span
+                              className={`text-[11px] font-mono ${
+                                isDark ? "text-white/50" : "text-slate-600"
+                              }`}
+                            >
+                              +12% vs last wk
+                            </span>
+                          </div>
                         </div>
 
+                        {/* Stat 3 */}
                         <div
-                          className={`group relative overflow-hidden rounded-2xl border p-4 transition ${
+                          className={`group relative overflow-hidden rounded-2xl border p-4 transition duration-300 hover:scale-[1.02] shadow-lg ${
                             isDark
-                              ? "border-white/10 bg-white/[0.02] hover:border-white/20"
-                              : "border-slate-200 bg-slate-50 hover:border-slate-300"
+                              ? "border-white/15 bg-[#0d0f13] hover:border-lime-300/40"
+                              : "border-slate-200 bg-white hover:border-lime-400"
                           }`}
                         >
-                          <div className="pointer-events-none absolute inset-0 -z-10 opacity-15">
+                          {/* Card Background Image */}
+                          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                             <img
-                              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80"
-                              alt="Deep Work"
-                              className="h-full w-full object-cover mix-blend-luminosity"
+                              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80"
+                              alt="Deep Work Background"
+                              className={`h-full w-full object-cover transition duration-300 group-hover:scale-105 ${
+                                isDark
+                                  ? "opacity-35 brightness-110 contrast-125"
+                                  : "opacity-20 brightness-125"
+                              }`}
                             />
                             <div
                               className={`absolute inset-0 ${
-                                isDark ? "bg-[#0d0f13]/85" : "bg-white/80"
+                                isDark
+                                  ? "bg-gradient-to-t from-[#0d0f13] via-[#0d0f13]/60 to-[#0d0f13]/30"
+                                  : "bg-gradient-to-t from-white via-white/70 to-white/40"
                               }`}
                             />
                           </div>
-                          <p
-                            className={`text-xs font-mono ${
-                              isDark ? "text-white/40" : "text-slate-500"
-                            }`}
-                          >
-                            DEEP WORK
-                          </p>
-                          <p
-                            className={`mt-2 text-2xl font-bold font-mono ${
-                              isDark ? "text-white" : "text-slate-900"
-                            }`}
-                          >
-                            4.8h
-                          </p>
-                          <span
-                            className={`text-[11px] font-mono ${
-                              isDark ? "text-cyan-300" : "text-cyan-600 font-semibold"
-                            }`}
-                          >
-                            In the zone
-                          </span>
+                          <div className="relative z-10">
+                            <p
+                              className={`text-xs font-mono font-semibold ${
+                                isDark ? "text-white/60" : "text-slate-500"
+                              }`}
+                            >
+                              DEEP WORK
+                            </p>
+                            <p
+                              className={`mt-2 text-2xl font-bold font-mono ${
+                                isDark ? "text-white" : "text-slate-900"
+                              }`}
+                            >
+                              4.8h
+                            </p>
+                            <span
+                              className={`text-[11px] font-mono ${
+                                isDark ? "text-cyan-300" : "text-cyan-600 font-bold"
+                              }`}
+                            >
+                              In the zone
+                            </span>
+                          </div>
                         </div>
 
+                        {/* Stat 4 */}
                         <div
-                          className={`group relative overflow-hidden rounded-2xl border p-4 transition ${
+                          className={`group relative overflow-hidden rounded-2xl border p-4 transition duration-300 hover:scale-[1.02] shadow-lg ${
                             isDark
-                              ? "border-white/10 bg-white/[0.02] hover:border-white/20"
-                              : "border-slate-200 bg-slate-50 hover:border-slate-300"
+                              ? "border-white/15 bg-[#0d0f13] hover:border-lime-300/40"
+                              : "border-slate-200 bg-white hover:border-lime-400"
                           }`}
                         >
-                          <div className="pointer-events-none absolute inset-0 -z-10 opacity-15">
+                          {/* Card Background Image */}
+                          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                             <img
-                              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80"
-                              alt="Context"
-                              className="h-full w-full object-cover mix-blend-luminosity"
+                              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+                              alt="Context Background"
+                              className={`h-full w-full object-cover transition duration-300 group-hover:scale-105 ${
+                                isDark
+                                  ? "opacity-35 brightness-110 contrast-125"
+                                  : "opacity-20 brightness-125"
+                              }`}
                             />
                             <div
                               className={`absolute inset-0 ${
-                                isDark ? "bg-[#0d0f13]/85" : "bg-white/80"
+                                isDark
+                                  ? "bg-gradient-to-t from-[#0d0f13] via-[#0d0f13]/60 to-[#0d0f13]/30"
+                                  : "bg-gradient-to-t from-white via-white/70 to-white/40"
                               }`}
                             />
                           </div>
-                          <p
-                            className={`text-xs font-mono ${
-                              isDark ? "text-white/40" : "text-slate-500"
-                            }`}
-                          >
-                            CONTEXT TAX
-                          </p>
-                          <p
-                            className={`mt-2 text-2xl font-bold font-mono ${
-                              isDark ? "text-emerald-400" : "text-emerald-600"
-                            }`}
-                          >
-                            0h
-                          </p>
-                          <span
-                            className={`text-[11px] font-mono ${
-                              isDark ? "text-white/40" : "text-slate-500"
-                            }`}
-                          >
-                            Single pane
-                          </span>
+                          <div className="relative z-10">
+                            <p
+                              className={`text-xs font-mono font-semibold ${
+                                isDark ? "text-white/60" : "text-slate-500"
+                              }`}
+                            >
+                              CONTEXT TAX
+                            </p>
+                            <p
+                              className={`mt-2 text-2xl font-bold font-mono ${
+                                isDark ? "text-emerald-400" : "text-emerald-600"
+                              }`}
+                            >
+                              0h
+                            </p>
+                            <span
+                              className={`text-[11px] font-mono ${
+                                isDark ? "text-white/50" : "text-slate-600"
+                              }`}
+                            >
+                              Single pane
+                            </span>
+                          </div>
                         </div>
                       </div>
 

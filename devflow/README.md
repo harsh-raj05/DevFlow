@@ -8,9 +8,9 @@ Built for the **Acdyon Technologies Engineering Frontend Challenge — "Build It
 ---
 
 ## ⚡ Quick Links
-- **Live Deployment:** [Deployed on Vercel / Netlify](https://your-deployment-url.vercel.app) *(Replace with your live URL)*
-- **GitHub Repository:** [github.com/your-username/devflow](https://github.com/your-username/devflow) *(Replace with your repo link)*
+- **GitHub Repository:** [https://github.com/harsh-raj05/DevFlow](https://github.com/harsh-raj05/DevFlow)
 - **Engineering Decisions:** [DECISIONS.md](./DECISIONS.md)
+- **Live Deployment:** [Deployed on Vercel](https://github.com/harsh-raj05/DevFlow) *(Add your live Vercel/Netlify URL here)*
 
 ---
 
@@ -84,10 +84,10 @@ DevFlow is not a static mockup. Every section provides authentic, responsive int
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/devflow.git
+git clone https://github.com/harsh-raj05/DevFlow.git
 
 # Navigate to the project directory
-cd devflow
+cd DevFlow/devflow
 
 # Install dependencies
 npm install
@@ -122,4 +122,4 @@ Tested and verified across multiple screen breakpoints with **zero horizontal sc
 
 ## 📄 License
 
-MIT © 2026 DevFlow. Built with craft and care.
+MIT © 2026 Harsh Raj & DevFlow. Built with craft and care.

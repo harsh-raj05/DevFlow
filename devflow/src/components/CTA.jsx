@@ -12,6 +12,16 @@ export default function CTA({ onOpenTerminal }) {
           transition={{ duration: 0.6 }}
           className="relative overflow-hidden rounded-[2.5rem] border border-white/15 bg-gradient-to-b from-[#12151d] to-[#0a0c10] px-6 py-16 text-center shadow-2xl shadow-black/80 sm:px-10 lg:px-16 lg:py-24"
         >
+          {/* In-Card Media Backdrop */}
+          <div className="pointer-events-none absolute inset-0 -z-10 opacity-20">
+            <img
+              src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1600&q=80"
+              alt="Developer Launch Banner"
+              className="h-full w-full object-cover mix-blend-screen"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c10] via-transparent to-[#0a0c10]" />
+          </div>
+
           {/* Ambient Glows */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 -z-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-lime-300/10 blur-[130px]" />
           <div className="pointer-events-none absolute right-10 top-10 h-64 w-64 rounded-full bg-cyan-400/5 blur-[100px]" />

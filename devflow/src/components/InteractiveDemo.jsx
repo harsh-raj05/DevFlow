@@ -265,11 +265,10 @@ export default function InteractiveDemo() {
                   <button
                     key={cat}
                     onClick={() => setActiveFilter(cat)}
-                    className={`rounded-xl px-3 py-1.5 text-xs font-medium transition ${
-                      activeFilter === cat
+                    className={`rounded-xl px-3 py-1.5 text-xs font-medium transition ${activeFilter === cat
                         ? "bg-white/15 text-white font-semibold"
                         : "text-white/40 hover:text-white"
-                    }`}
+                      }`}
                   >
                     {cat}
                   </button>
@@ -293,31 +292,28 @@ export default function InteractiveDemo() {
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.2 }}
                         onClick={() => toggleTask(task.id)}
-                        className={`group flex cursor-pointer items-center justify-between gap-4 rounded-2xl border p-4 transition-all duration-200 ${
-                          task.completed
+                        className={`group flex cursor-pointer items-center justify-between gap-4 rounded-2xl border p-4 transition-all duration-200 ${task.completed
                             ? "border-white/5 bg-white/[0.01] opacity-60"
                             : "border-white/10 bg-white/[0.025] hover:border-lime-300/30 hover:bg-white/[0.05]"
-                        }`}
+                          }`}
                       >
                         <div className="flex items-center gap-3.5 min-w-0">
                           <button
                             type="button"
-                            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition ${
-                              task.completed
+                            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition ${task.completed
                                 ? "border-lime-300 bg-lime-300 text-black font-bold"
                                 : "border-white/20 text-transparent group-hover:border-lime-300/50"
-                            }`}
+                              }`}
                           >
                             <Check size={13} strokeWidth={3} />
                           </button>
 
                           <div className="min-w-0">
                             <p
-                              className={`truncate text-sm font-medium transition ${
-                                task.completed
+                              className={`truncate text-sm font-medium transition ${task.completed
                                   ? "text-white/35 line-through"
                                   : "text-white/90"
-                              }`}
+                                }`}
                             >
                               {task.title}
                             </p>
@@ -389,11 +385,10 @@ export default function InteractiveDemo() {
                   <div className="mt-4 flex items-center justify-center gap-2">
                     <button
                       onClick={toggleTimer}
-                      className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition ${
-                        isTimerRunning
+                      className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition ${isTimerRunning
                           ? "bg-amber-400/20 text-amber-300 border border-amber-400/30"
                           : "bg-lime-300 text-black hover:bg-lime-200"
-                      }`}
+                        }`}
                     >
                       {isTimerRunning ? <Pause size={14} /> : <Play size={14} />}
                       <span>{isTimerRunning ? "Pause Sprint" : "Start Sprint"}</span>
@@ -415,8 +410,8 @@ export default function InteractiveDemo() {
                     {progressPercent === 100
                       ? "🎉 All priority sprint tasks checked! High throughput achieved."
                       : progressPercent >= 50
-                      ? "⚡ Outstanding momentum. Over halfway through today's priorities."
-                      : "🎯 Start your deep focus sprint. One commit at a time."}
+                        ? "⚡ Outstanding momentum. Over halfway through today's priorities."
+                        : "🎯 Start your deep focus sprint. One commit at a time."}
                   </p>
                 </div>
               </div>

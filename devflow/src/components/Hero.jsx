@@ -52,7 +52,7 @@ export default function Hero({ onOpenTerminal }) {
 
   return (
     <section className="relative overflow-hidden px-6 pb-24 pt-20 lg:px-8 lg:pb-36 lg:pt-28">
-      {/* Central Radiant Glow */}
+      {/* Central Radiant Glow (No full page photos) */}
       <div className="pointer-events-none absolute left-1/2 top-10 -z-10 h-[550px] w-[550px] -translate-x-1/2 rounded-full bg-lime-300/10 blur-[150px]" />
 
       <div className="mx-auto max-w-7xl">
@@ -127,16 +127,60 @@ export default function Hero({ onOpenTerminal }) {
           </motion.div>
         </div>
 
+        {/* Feature Hero Banner Image Showcase */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-r from-[#0d1117] via-[#121824] to-[#0d1117] p-2 shadow-2xl"
+        >
+          <div className="relative overflow-hidden rounded-2xl border border-white/10">
+            {/* Banner Background Image */}
+            <div className="relative h-48 sm:h-60 lg:h-72 w-full overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80"
+                alt="DevFlow Command Center Banner"
+                className="h-full w-full object-cover object-center brightness-95 contrast-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#090b0f] via-[#090b0f]/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#090b0f]/70 via-transparent to-[#090b0f]/70" />
+
+              {/* Banner Text Content */}
+              <div className="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div>
+                  <span className="rounded-full bg-lime-300/25 px-3 py-1 font-mono text-[11px] font-bold text-lime-300 backdrop-blur-md border border-lime-300/30">
+                    ⚡ DEV COMMAND DECK v2.4
+                  </span>
+                  <h3 className="mt-2.5 text-xl sm:text-3xl font-extrabold text-white drop-shadow-md">
+                    Engineered for Maximum Coding Throughput
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/80 font-mono mt-1 drop-shadow">
+                    Local Git Repos • Unified Task Stream • Zero Telemetry
+                  </p>
+                </div>
+
+                <a
+                  href="#product"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-lime-300 px-5 py-2.5 text-xs font-bold text-black shadow-lg shadow-lime-300/30 transition hover:bg-lime-200 shrink-0 w-fit"
+                >
+                  <span>Explore Features</span>
+                  <ArrowRight size={14} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Interactive Dashboard Showcase */}
         <motion.div
-          initial={{ opacity: 0, y: 60, scale: 0.96 }}
+          initial={{ opacity: 0, y: 50, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
             duration: 0.8,
-            delay: 0.35,
+            delay: 0.45,
             ease: "easeOut",
           }}
-          className="relative mx-auto mt-16 max-w-6xl"
+          className="relative mx-auto mt-12 max-w-6xl"
         >
           {/* Radiant Backdrop Glow */}
           <div className="absolute inset-0 -z-10 rounded-[36px] bg-gradient-to-b from-lime-300/10 via-cyan-400/5 to-transparent blur-3xl" />
@@ -285,27 +329,59 @@ export default function Hero({ onOpenTerminal }) {
                         </div>
                       </div>
 
-                      {/* Stat Metrics Cards */}
+                      {/* Stat Metrics Cards with Rich Card Textures */}
                       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-white/20">
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-white/20">
+                          <div className="pointer-events-none absolute inset-0 -z-10 opacity-15">
+                            <img
+                              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80"
+                              alt="Builds"
+                              className="h-full w-full object-cover mix-blend-luminosity"
+                            />
+                            <div className="absolute inset-0 bg-[#0d0f13]/85" />
+                          </div>
                           <p className="text-xs text-white/40 font-mono">ACTIVE BUILDS</p>
                           <p className="mt-2 text-2xl font-bold text-white font-mono">08</p>
                           <span className="text-[11px] text-lime-300 font-mono">● All Passing</span>
                         </div>
 
-                        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-white/20">
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-white/20">
+                          <div className="pointer-events-none absolute inset-0 -z-10 opacity-15">
+                            <img
+                              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80"
+                              alt="Velocity"
+                              className="h-full w-full object-cover mix-blend-luminosity"
+                            />
+                            <div className="absolute inset-0 bg-[#0d0f13]/85" />
+                          </div>
                           <p className="text-xs text-white/40 font-mono">VELOCITY</p>
                           <p className="mt-2 text-2xl font-bold text-lime-300 font-mono">88%</p>
                           <span className="text-[11px] text-white/40 font-mono">+12% vs last wk</span>
                         </div>
 
-                        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-white/20">
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-white/20">
+                          <div className="pointer-events-none absolute inset-0 -z-10 opacity-15">
+                            <img
+                              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80"
+                              alt="Deep Work"
+                              className="h-full w-full object-cover mix-blend-luminosity"
+                            />
+                            <div className="absolute inset-0 bg-[#0d0f13]/85" />
+                          </div>
                           <p className="text-xs text-white/40 font-mono">DEEP WORK</p>
                           <p className="mt-2 text-2xl font-bold text-white font-mono">4.8h</p>
                           <span className="text-[11px] text-cyan-300 font-mono">In the zone</span>
                         </div>
 
-                        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-white/20">
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-white/20">
+                          <div className="pointer-events-none absolute inset-0 -z-10 opacity-15">
+                            <img
+                              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80"
+                              alt="Context"
+                              className="h-full w-full object-cover mix-blend-luminosity"
+                            />
+                            <div className="absolute inset-0 bg-[#0d0f13]/85" />
+                          </div>
                           <p className="text-xs text-white/40 font-mono">CONTEXT TAX</p>
                           <p className="mt-2 text-2xl font-bold text-emerald-400 font-mono">0h</p>
                           <span className="text-[11px] text-white/40 font-mono">Single pane</span>
